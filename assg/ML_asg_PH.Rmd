@@ -24,6 +24,9 @@ Note that the `echo = FALSE` parameter was added to the code chunk to prevent pr
 #load the data#
 
 setwd("C://Work//Data_Science//Machine_Learning//assg")
+
+setwd("C://Work//docs//PaulWork//Data_Science_Course//machine_learning//ML_asg_PH//for_clone//assg")
+
 pml_train <- read.csv("pml-training.csv",header = TRUE)
 
 #identify vaiables that are highly correlated#
