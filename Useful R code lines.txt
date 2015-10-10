@@ -1,0 +1,154 @@
+setwd("C://Work//docs//PaulWork//Data_Science_Course//Obtaining_Data//week1task")
+list.files()
+
+
+
+download.file("https://d396qusza40orc.cloudfront.net/getdata%2Fdata%2FDATA.gov_NGAP.xlsx", destfile = "NGAP.xlsx")
+
+dateDownloaded <- date()
+dateDownloaded
+
+install.packages("xlsx")
+
+library (xlsx)
+NGAPdata <- read.xlsx("NGAP2",sheetIndex=1,header=TRUE)
+head(NGAPdata) ##shows headings and first few lines
+
+attach(dataset) means you don't need the $
+
+fulldata <- read.table("household_power_consumption.txt",header=TRUE,sep=";")
+
+write.csv()
+
+df<-fread("./household_power_consumption.txt", skip="1/2/2007",nrows=2880, colClass="numeric")
+
+
+s
+
+library(XML)
+NGAPdata <- xmlTreeParse(file.xml or URL,useInternal=TRUE)
+rootNode <- xmlRoot(NGAPdata)
+xmlName(rootNode)
+rootNode [[1]] [[1]]
+xmlSApply(rootNode,xmlValue)
+xpathSApply(rootNode,"//name",xmlValue) ##extracts the column heading
+xpathSApply(rootNode,"//fieldname",xmlValue) ##extracts the fieldname 'column'
+
+
+library(jsonlite)
+jsonData <- fromJSON(URL)
+names(jsonData) ##gives field headings
+names(jsonData$owner) ##digs in one level
+
+data.table ##faster than data.frame
+
+GDP = read.csv("GDP.csv", header = TRUE)
+
+
+
+handle<-dbConnect(MySQL(),user="xx", host="xx-mysql.ac")
+result<- dbGetQuery(handle,"show databases;");dbDisconnect(myfile); ## gives you list of databases
+
+hg19<-dbConnect(MySQL(),user="xx", db="hg19", host="xx-mysql.ac")
+allTables<-dbListTables(hg19)
+length(allTables) ## how many tables
+alltables[1:5] ## list first 5 table names
+dblistfields(hg19,"table_name")
+dbGetQuery(hg19, "select count(*) from table_name") ##gives no. rows in that table
+
+affyData <- dbReadTable(hg19, "table_name") ##read from the table
+head(affyData) ##
+
+query <- dbSendQuery(hg19, "select * from table_name where fieldx between 1 and 3") ##load part of a table NOTE: phrase in quotes is a MySQL phrase
+affyMis <- fetch(query); quantile(affyMis$fieldx) 
+affyMisSample <- fetch(query,n=10); dbClearResult(query)
+
+
+to get a subset column var1 of X use X[,"var1"] or X[,1] note: X[1:2,1] gives 1st 2 rows of column 1
+
+X[(X$var1<=3 & X$var3 > 11),] or X[(X$var1<=3 | X$var3 > 11),] 
+
+X[which(X$var2>8),] ##excludes na
+
+ ##add a column
+
+febdata <- fulldata[ which(fulldata$Date=='1/2/2007' | fulldata$Date=='2/2/2007'), ] ##gives all columns for 2 days in Feb
+
+
+
+
+# Rename a column in R
+colnames(data)[colnames(data)=="old_name"] <- "new_name"
+
+gsub("_","",testName) ##turns testName<-"this_is_a_test" to "thisisatest"
+
+sub("_","",names(reviews),) cleans up the field headings
+
+grep("search",file$field,value=TRUE) ## returns the data from field that contains search
+
+std <- mergedData4[,grepl("std\\(\\)", names(mergedData4))] ## returns the data from columns in mergedData4 whose names that contains std
+
+rbind (data1, data2) ##add extra rows if headings the same
+cbind (data1, data2) ##join two tables with same no. rows together
+
+
+x2[x2 == "A"] <- "A/A" ## find and replace AA for A
+
+
+
+nchar("string") ##count
+substr("string word",1,6) ##gives "string"
+paste("string","word") ##gives "string word" paste0 leaves out the space
+
+
+globnum <- as.numeric(as.character(febdata$Global_active_power)) ##makes all values in this column numeric
+
+
+utils::View() like View(), but opens a new window and doesn't limit to 1k rows
+
+
+we <- gsub(",", "", we)   # remove comma
+we <- as.numeric(we)
+
+
+Baseplot
+
+total_em_bmore<-em_bmore %>% group_by(type,year) %>% summarise(total_em=sum(Emissions))
+balt_by_year <- group_by(baltimore, year, type)
+
+merge(df1, df2, by="CustomerId")
+
+
+sort
+
+g <- ggplot(mtcars, aes(x=wt, y=mpg))
+g <- g + geom_point(colour=am)
+g <- g + scale_colour_manual(values = c("red","blue"))
+g
+
+
+
+LINEAR REGRESSION
+
+scale(x2) ##gives normalised values
+
+fit <- lm(mpg ~ wt, data=mtcars)
+> new <- data.frame(wt = 3)
+> predict(fit, new, interval = "prediction")
+fit      lwr      upr
+1 21.25171 14.92987 27.57355
+
+anova allows you to compare different models
+
+model_all <- lm(mpg ~ ., data = mtcars)
+model_best <- step(model_all, direction = "both") ## runs through all combinations of models and reports the one that fits best
+
+adjusted r-squared of 0.84 indictes that 84% of the variation in mpg 
+
+NON-LINEAR REGRESSION
+fitq4 <- glm(count ~ factor(spray) - 1, data = InsectSprays, family = poisson)
+
+or binomial for 1/0
+
+summary(fitq4)
+exp(coef(fitq4)) ## gives us the odds
